@@ -34,7 +34,7 @@
     "jsonpointer" "^5.0.0"
     "leven" "^3.1.0"
 
-"@apollo/client@latest":
+"@apollo/client@^3.7.17", "@apollo/client@latest":
   "integrity" "sha512-0EErSHEtKPNl5wgWikHJbKFAzJ/k11O0WO2QyqZSHpdxdAnw7UWHY4YiLbHCFG7lhrD+NTQ3Z/H9Jn4rcikoJA=="
   "resolved" "https://registry.npmjs.org/@apollo/client/-/client-3.7.17.tgz"
   "version" "3.7.17"
