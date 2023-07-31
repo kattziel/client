@@ -8,7 +8,8 @@ const client = new ApolloClient({
 
 const App = () => {
   const [posts, setPosts] = useState([]);
-  client.query({
+  client
+    .query({
       query: gql`
         {
           allPosts {
@@ -17,11 +18,20 @@ const App = () => {
             description
           }
         }
-      `
+      `,
     })
-    .then(result => setPosts(result.data.allPosts));
+    .then((result) => setPosts(result.data.allPosts));
 
-  return <p>Hello</p>;
+  return (
+    <div className="container">
+      {posts.map((post) => (
+        <div key={post.id}>
+          {post.title}
+          <div>{post.description}</div>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default App;
