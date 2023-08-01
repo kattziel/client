@@ -3,6 +3,7 @@ import { ApolloClient } from "@apollo/client";
 import { gql } from "apollo-boost";
 import { useQuery, useLazyQuery } from "@apollo/react-hooks";
 import { AuthContext } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const GET_ALL_POSTS = gql`
   query {
@@ -21,9 +22,19 @@ const Home = () => {
   //access context and getting access to the state and dispatch
   const { state, dispatch } = useContext(AuthContext);
 
+  //react router; history gives as a history object of a browser
+  let navigate = useNavigate();
+
   if (loading) return <p className="p-5">Loading...</p>;
   if (error)
     return <p className="p-5">An error occurred, please try again later...</p>;
+
+  const updateUserName = () => {
+    dispatch({
+      type: "LOGGED_IN_USER",
+      payload: "Katarzyna",
+    });
+  };
 
   return (
     <div className="container">
@@ -51,6 +62,12 @@ const Home = () => {
       {JSON.stringify(posts)}
       <hr />
       {JSON.stringify(state.user)}
+      <hr />
+      <button className="btn btn-primary" onClick={updateUserName}>
+        Change user name
+      </button>
+      <hr />
+      {JSON.stringify(navigate)};
     </div>
   );
 };

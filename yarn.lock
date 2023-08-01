@@ -8426,6 +8426,11 @@
   dependencies:
     "tmpl" "1.0.x"
 
+"mdb-ui-kit@^6.4.1":
+  "integrity" "sha512-5YjAGSpoZ40+xsjSiyRQR6xvwJn/lBMeuCNqUds7fArlYKwK8yP8vMZjLK51tCLNmhcnAurD/7HCiRYi0YRjPA=="
+  "resolved" "https://registry.npmjs.org/mdb-ui-kit/-/mdb-ui-kit-6.4.1.tgz"
+  "version" "6.4.1"
+
 "mdn-data@2.0.14":
   "integrity" "sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow=="
   "resolved" "https://registry.npmjs.org/mdn-data/-/mdn-data-2.0.14.tgz"
