@@ -1,7 +1,8 @@
-import React from "react";
-import { ApolloClient } from '@apollo/client';
+import React, { useContext } from "react";
+import { ApolloClient } from "@apollo/client";
 import { gql } from "apollo-boost";
 import { useQuery, useLazyQuery } from "@apollo/react-hooks";
+import { AuthContext } from "../context/authContext";
 
 const GET_ALL_POSTS = gql`
   query {
@@ -16,6 +17,9 @@ const GET_ALL_POSTS = gql`
 const Home = () => {
   const { data, loading, error } = useQuery(GET_ALL_POSTS);
   const [fetchPosts, { data: posts }] = useLazyQuery(GET_ALL_POSTS);
+
+  //access context and getting access to the state and dispatch
+  const { state, dispatch } = useContext(AuthContext);
 
   if (loading) return <p className="p-5">Loading...</p>;
   if (error)
@@ -43,8 +47,10 @@ const Home = () => {
           Fetch POSTS
         </button>
       </div>
-      <hr/>
+      <hr />
       {JSON.stringify(posts)}
+      <hr />
+      {JSON.stringify(state.user)}
     </div>
   );
 };
