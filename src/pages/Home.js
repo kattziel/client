@@ -67,7 +67,7 @@ const Home = () => {
         Change user name
       </button>
       <hr />
-      {JSON.stringify(navigate)};
+      {JSON.stringify(navigate)}
     </div>
   );
 };
