@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailLink } from "firebase/auth";
+import { AuthContext } from "./../../context/authContext";
 
 const CompleteRegistration = () => {
+  const { dispatch } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const auth = getAuth();
-  const navigate = useNavigate();
+  const navigation = useNavigate();
 
   useEffect(() => {
     setEmail(window.localStorage.getItem("emailFormRegistration"));
-  }, [navigate]);
+  }, [navigation]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,24 +28,34 @@ const CompleteRegistration = () => {
       return;
     }
     try {
-        const result = await signInWithEmailLink(auth, email, window.location.href);
-        // console.log(result);
-        if (result.user.emailVerified) {
-            // remove email from local storage
-            window.localStorage.removeItem('emailFormRegistration');
-            //handling the process of creating the user and updating their password after their email has been verified
-            let user = auth.currentUser;
-            await user.updatePassword(password);
+      const result = await signInWithEmailLink(
+        auth,
+        email,
+        window.location.href
+      );
+      // console.log(result);
+      if (result.user.emailVerified) {
+        // remove email from local storage
+        window.localStorage.removeItem("emailFormRegistration");
+        //handling the process of creating the user and updating their password after their email has been verified
+        let user = auth.currentUser;
+        await user.updatePassword(password);
 
-            // dispatch user with token and email
-            // then redirect
-        }
+        // dispatch user with token and email
+        // then redirect
+        const idTokenResult = await user.getIdTokenResult();
+        dispatch({
+          type: "LOGGED_IN",
+          payload: { email: user.email, token: idTokenResult.token },
+        });
+        navigation.navigate("/");
+      }
     } catch (error) {
-        console.log('register complete error', error.message);
-        setLoading(false);
-        toast.error(error.message);
+      console.log("register complete error", error.message);
+      setLoading(false);
+      toast.error(error.message);
     }
-};
+  };
 
   return (
     <div className="container py-5">
