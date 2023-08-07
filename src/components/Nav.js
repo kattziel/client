@@ -18,7 +18,7 @@ const Nav = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
           <Link className="navbar-brand" to="/">
-            Hidden brand
+            Fetch GQL
           </Link>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">

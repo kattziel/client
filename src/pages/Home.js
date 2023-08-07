@@ -36,27 +36,58 @@ const Home = () => {
     });
   };
 
+  // return (
+  //   <div className="container">
+  //     <div className="row p-5">
+  //       {data.allPosts.map((p) => (
+  //         <div className="col-md-4" key={p.id}>
+  //           <div className="card">
+  //             <div className="card-body">
+  //               <div className="card-title">
+  //                 <h4>{p.title}</h4>
+  //               </div>
+  //               <p className="card-text">{p.description}</p>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       ))}
+  //       <button
+  //         onClick={() => fetchPosts()}
+  //         className="btn-btn-raised btn-primary"
+  //       >
+  //         Fetch POSTS
+  //       </button>
+  //     </div>
+  //     <hr />
+  //     {JSON.stringify(posts)}
+  //     <hr />
+  //     {JSON.stringify(state.user)}
+  //     <hr />
+  //     <button className="btn btn-primary" onClick={updateUserName}>
+  //       Change user name
+  //     </button>
+  //     <hr />
+  //     {JSON.stringify(navigate)}
+  //   </div>
+  // );
   return (
-    <div className="container">
-      <div className="row p-5">
+    <div className="container py-5">
+      <div className="row">
         {data.allPosts.map((p) => (
           <div className="col-md-4" key={p.id}>
-            <div className="card">
+            <div className="card mb-4">
               <div className="card-body">
-                <div className="card-title">
-                  <h4>{p.title}</h4>
-                </div>
+                <h4 className="card-title">{p.title}</h4>
                 <p className="card-text">{p.description}</p>
               </div>
             </div>
           </div>
         ))}
-        <button
-          onClick={() => fetchPosts()}
-          className="btn-btn-raised btn-primary"
-        >
-          Fetch POSTS
-        </button>
+        <div className="col-md-12">
+          <button onClick={() => fetchPosts()} className="btn btn-primary">
+            Fetch POSTS
+          </button>
+        </div>
       </div>
       <hr />
       {JSON.stringify(posts)}
