@@ -30,7 +30,8 @@ const CompleteRegistration = () => {
         // console.log(result);
         if (result.user.emailVerified) {
             // remove email from local storage
-            window.localStorage.removeItem('emailForRegistration');
+            window.localStorage.removeItem('emailFormRegistration');
+            //handling the process of creating the user and updating their password after their email has been verified
             let user = auth.currentUser;
             await user.updatePassword(password);
 
